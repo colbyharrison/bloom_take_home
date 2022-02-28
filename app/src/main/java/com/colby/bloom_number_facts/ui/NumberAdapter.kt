@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.colby.bloom_number_facts.R
 import com.colby.bloom_number_facts.data.NumberFact
 import com.colby.bloom_number_facts.databinding.NumberFactCardBinding
 
@@ -23,6 +24,8 @@ class NumberAdapter :
     class ViewHolder private constructor(private val binding: NumberFactCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NumberFact) {
+            binding.title.text = binding.root.context.getString(R.string.fact_title, item.number)
+            binding.description.text = item.fact
 
         }
 
@@ -52,5 +55,4 @@ class DeviceDiffCallback : DiffUtil.ItemCallback<NumberFact>() {
     ): Boolean {
         return oldItem == newItem
     }
-
 }

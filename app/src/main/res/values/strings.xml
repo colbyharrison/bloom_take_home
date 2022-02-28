@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">bloom_number_facts</string>
+    <string name="app_name">Numbers API Card App</string>
+    <string name="fact_title">Random Fact #%1$s</string>
 </resources>

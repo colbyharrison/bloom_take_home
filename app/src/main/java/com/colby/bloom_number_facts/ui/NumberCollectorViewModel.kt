@@ -21,6 +21,7 @@ class NumberCollectorViewModel(private val repo: NumbersRepository = NumbersRepo
 
     private fun getNumbers() {
         viewModelScope.launch {
+            _uiState.value = _uiState.value?.copy(isLoading = true)
             val result = repo.getNumbers(createRandomRange())
 
             when (result.status) {
@@ -34,7 +35,11 @@ class NumberCollectorViewModel(private val repo: NumbersRepository = NumbersRepo
         }
     }
 
+    //Using shuffle vs random to ensure we have unique numbers. No need to have duplicate facts.
     private fun createRandomRange(): String =
-        (1..FACTS_DESIRED).map { Random.nextInt(100).toString() }.reduce { l, r -> "$l,$r" }
+        (1..100).shuffled().take(FACTS_DESIRED).map { it.toString() }.reduce { l, r -> "$l,$r" }
 
+    fun errorShown() {
+        _uiState.value = _uiState.value?.copy(errorMessage = null)
+    }
 }
