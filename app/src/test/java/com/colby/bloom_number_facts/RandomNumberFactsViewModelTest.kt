@@ -2,8 +2,8 @@ package com.colby.bloom_number_facts
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.colby.bloom_number_facts.data.NumberFact
-import com.colby.bloom_number_facts.ui.NumberCollectorViewModel
-import com.colby.bloom_number_facts.ui.NumberUiState
+import com.colby.bloom_number_facts.ui.RandomNumberFactsViewModel
+import com.colby.bloom_number_facts.ui.RandomNumberFactsUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.*
 import org.junit.After
@@ -14,10 +14,10 @@ import org.junit.Assert.assertEquals
 
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class NumberCollectorViewModelTest {
+class RandomNumberFactsViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private val repo = MockRepository()
-    private lateinit var viewModel: NumberCollectorViewModel
+    private lateinit var viewModel: RandomNumberFactsViewModel
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -37,12 +37,12 @@ class NumberCollectorViewModelTest {
     @Test
     fun initialCreation() = runTest {
         repo.typeOfResponse = TypeOfResponse.WELL_FORMED
-        viewModel = NumberCollectorViewModel(repo)
-        assertEquals(NumberUiState(isLoading = true), viewModel.uiState.value)
+        viewModel = RandomNumberFactsViewModel(repo)
+        assertEquals(RandomNumberFactsUiState(isLoading = true), viewModel.uiState.value)
         advanceUntilIdle()
 
         assertEquals(
-            NumberUiState(
+            RandomNumberFactsUiState(
                 numberFacts = listOf(
                     NumberFact("1", "Test"),
                     NumberFact("2", "Test2")

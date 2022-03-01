@@ -8,11 +8,11 @@ import kotlinx.coroutines.launch
 
 private const val FACTS_DESIRED = 20
 
-class NumberCollectorViewModel(private val repo: NumberRepository = NumberFactsRepository()) :
+class RandomNumberFactsViewModel(private val repo: NumberRepository = NumberFactsRepository()) :
     ViewModel() {
 
-    private val _uiState = MutableLiveData<NumberUiState>(NumberUiState(isLoading = true))
-    val uiState: LiveData<NumberUiState>
+    private val _uiState = MutableLiveData<RandomNumberFactsUiState>(RandomNumberFactsUiState(isLoading = true))
+    val uiState: LiveData<RandomNumberFactsUiState>
         get() = _uiState
 
     init {

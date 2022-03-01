@@ -15,8 +15,8 @@ import com.colby.bloom_number_facts.databinding.NumberListFragmentBinding
 class NumberListFragment : Fragment() {
 
     private lateinit var binding: NumberListFragmentBinding
-    private lateinit var viewModel: NumberCollectorViewModel
-    private lateinit var adapter: NumberAdapter
+    private lateinit var viewModel: RandomNumberFactsViewModel
+    private lateinit var adapter: RandomNumberFactsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,15 +24,15 @@ class NumberListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = NumberListFragmentBinding.inflate(layoutInflater, container, false)
-        viewModel = ViewModelProvider(this)[NumberCollectorViewModel::class.java]
-        setupList()
+        viewModel = ViewModelProvider(this)[RandomNumberFactsViewModel::class.java]
+        setupFactList()
         setupUiStateListener()
 
         return binding.root
     }
 
-    private fun setupList() {
-        adapter = NumberAdapter()
+    private fun setupFactList() {
+        adapter = RandomNumberFactsAdapter()
         binding.numberList.layoutManager = LinearLayoutManager(context)
         binding.numberList.adapter = adapter
     }
@@ -61,6 +61,5 @@ class NumberListFragment : Fragment() {
             adapter.submitList(numbers)
             Log.i("fragment", numbers.toString())
         }
-
     }
 }

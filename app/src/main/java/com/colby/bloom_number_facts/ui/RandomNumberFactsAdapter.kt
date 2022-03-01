@@ -10,8 +10,8 @@ import com.colby.bloom_number_facts.data.NumberFact
 import com.colby.bloom_number_facts.databinding.NumberFactCardBinding
 
 
-class NumberAdapter :
-    ListAdapter<NumberFact, NumberAdapter.ViewHolder>(DeviceDiffCallback()) {
+class RandomNumberFactsAdapter :
+    ListAdapter<NumberFact, RandomNumberFactsAdapter.ViewHolder>(DeviceDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
