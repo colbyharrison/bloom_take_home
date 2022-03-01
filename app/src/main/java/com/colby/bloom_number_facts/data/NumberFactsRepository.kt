@@ -6,12 +6,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class NumbersRepository(
+interface NumberRepository {
+    suspend fun getNumbers(range: String): Resource<List<NumberFact>>
+}
+
+open class NumberFactsRepository(
     private val dataSource: NumbersDataSource = NumbersDataSource.create(),
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+) : NumberRepository {
 
-    suspend fun getNumbers(range: String) = withContext(defaultDispatcher) {
+    override suspend fun getNumbers(range: String) = withContext(defaultDispatcher) {
         try {
             Resource.success(data = dataSource.getNumbers(range).mapNotNull {
                 NumberFact(it.key, it.value)

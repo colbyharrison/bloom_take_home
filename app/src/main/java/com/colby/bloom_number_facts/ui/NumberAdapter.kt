@@ -26,7 +26,6 @@ class NumberAdapter :
         fun bind(item: NumberFact) {
             binding.title.text = binding.root.context.getString(R.string.fact_title, item.number)
             binding.description.text = item.fact
-
         }
 
         companion object {

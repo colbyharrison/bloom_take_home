@@ -2,13 +2,13 @@ package com.colby.bloom_number_facts.ui
 
 import androidx.lifecycle.*
 import com.colby.bloom_number_facts.utils.Status
-import com.colby.bloom_number_facts.data.NumbersRepository
+import com.colby.bloom_number_facts.data.NumberFactsRepository
+import com.colby.bloom_number_facts.data.NumberRepository
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 private const val FACTS_DESIRED = 20
 
-class NumberCollectorViewModel(private val repo: NumbersRepository = NumbersRepository()) :
+class NumberCollectorViewModel(private val repo: NumberRepository = NumberFactsRepository()) :
     ViewModel() {
 
     private val _uiState = MutableLiveData<NumberUiState>(NumberUiState(isLoading = true))
